@@ -13,6 +13,6 @@ validation $? "Enable the mongod service ...."
 systemctl start mongod 
 validation $? "Starting the mongod Service ..."
 
-sed -i sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 systemctl restart mongod
 validation $? "Restarting the mongod Service ..."
