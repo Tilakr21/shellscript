@@ -10,7 +10,7 @@ user_creation
 application
 service 
 
-cp mongo.repo /etc/yum.repos.d/
+cp $script_dir/mongo.repo /etc/yum.repos.d/
 validation $? "Copying the mongo repo was ..."
 
 dnf install mongodb-mongosh -y
