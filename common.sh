@@ -66,7 +66,7 @@ application(){
 }
 
 service(){
-    cp $app_name.service /etc/systemd/system/
+    cp $script_dir/$app_name.service /etc/systemd/system/
     validation $? "Copying the $app_name server is ..."
     
     systemctl daemon-reload

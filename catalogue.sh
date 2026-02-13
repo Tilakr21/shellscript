@@ -2,6 +2,7 @@ source ./common.sh
 app_name=catalogue
 runtime=nodejs
 MONGODB_HOST=mongodb.tilakrepalle.in
+script_dir=$PWD
 
 check_user
 node_setup
