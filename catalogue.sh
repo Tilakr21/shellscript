@@ -20,8 +20,9 @@ INDEX=$(mongosh --host $MONGODB_HOST --quiet --eval 'db.getMongo().getDBNames().
 
 if [ $INDEX -le 0 ]; then
    cd /app
-   mongosh --host  $MONGODB_HOST < /app/db/master-data.js &>> $LOG_FILE
+   mongosh --host  $MONGODB_HOST </app/db/master-data.js &>> $LOG_FILE
    validation $? "Loading products was ..."
 else 
   echo -e "$(date "+%Y-%m-%d %H:%M:%S") | Products already loaded ... $Y SKIPPING $N" &>> $LOG_FILE
+  validation $? "Data is already loaded....$Y SKIPPING $N"
 fi
