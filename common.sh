@@ -6,13 +6,12 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-mkdir -p $LOG_DIR
-
 check_user(){
     if [ $user -eq 0 ]; then
+       mkdir -p $LOG_DIR
        echo -e "Executing the script through root user...." | tee -a $LOG_FILE
     else
-      echo -e "Need the root access for executing the script..." | tee -a $LOG_FILE
+      echo -e "Need the root access for executing the script..." |
       exit 1
     fi
 }
