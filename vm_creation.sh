@@ -23,7 +23,7 @@ for instance in $@; do
                     {
                         "Action": "UPSERT",
                         "ResourceRecordSet": {
-                        "Name": "'$instance'",
+                        "Name": "'$instance'.tilakrepalle.in",
                         "Type": "A",
                         "TTL": '1',
                         "ResourceRecords": [
@@ -44,6 +44,7 @@ for instance in $@; do
                   --query "Instances[0].PrivateIpAddress" \
                   --output text
                 )
+            echo "Instance Public IP: $ip"
             aws route53 change-resource-record-sets \
                 --hosted-zone-id $HOSTED_ZONE_ID \
                 --change-batch '{
