@@ -1,5 +1,4 @@
-instance_creation(){
-  for instance in $@; do
+for instance in $@; do
         if [ $instance == nginx ]; then
             ip=$(aws ec2 run-instances \
                     --image-id ami-0220d79f3f480ecf5 \
@@ -62,8 +61,4 @@ instance_creation(){
                 }'
 
         fi
-  done
-
-}
-
-
+done
