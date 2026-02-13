@@ -1,11 +1,12 @@
 source ./common.sh
 app_name=catalogue
 runtime=nodejs
+version=20
 MONGODB_HOST=mongodb.tilakrepalle.in
 script_dir=$PWD
 
 check_user
-node_setup
+app_setup
 user_creation
 application
 service 

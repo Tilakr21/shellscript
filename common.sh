@@ -25,15 +25,15 @@ validation(){
     fi
 }
 
-node_setup(){
+app_setup(){
    dnf module disable $runtime -y &>> $LOG_FILE
    validation $? "Disable the default $runtime version ...."
    
-   dnf module enable $runtime:20 -y &>> $LOG_FILE
-   validation $? "Enable the $runtime version 20 ...."
+   dnf module enable $runtime:$version -y &>> $LOG_FILE
+   validation $? "Enable the $runtime version $version ...."
    
    dnf install $runtime -y &>> $LOG_FILE
-   validation $? "Installing $runtime version 20 was ...."
+   validation $? "Installing $runtime version $version was ...."
 }
 
 user_creation(){
@@ -47,34 +47,70 @@ user_creation(){
     fi
 }
 
+node(){
+    cd /app 
+    npm install 
+}
+
 application(){
-    # downloading the app
-    mkdir -p /app 
-    validation $? "Creating app directory"
+    
+    if [["$app_name" == "frontend"]]; then
+       #downloading the frontend
+       rm -rf /usr/share/nginx/html/* 
+       validation $? "Removing existing code"
 
-    curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip  &>>$LOG_FILE
-    validation $? "Downloading $app_name code"
+       curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip
+       validation $? "Downloaded $app_name code"
 
-    cd /app
-    validation $? "Moving to app directory"
+       cd /usr/share/nginx/html 
+       unzip /tmp/$app_name.zip 
+       validation $? "Uzip $app_name code"
 
-    rm -rf /app/*
-    validation $? "Removing existing code"
-
-    unzip /tmp/$app_name.zip &>>$LOG_FILE
-    validation $? "Uzip $app_name code"
+    else
+     # downloading the app
+     mkdir -p /app 
+     validation $? "Creating app directory"
+ 
+     curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip  &>>$LOG_FILE
+     validation $? "Downloaded $app_name code"
+ 
+     cd /app
+     validation $? "Moving to app directory"
+ 
+     rm -rf /app/*
+     validation $? "Removing existing code"
+ 
+     unzip /tmp/$app_name.zip &>>$LOG_FILE
+     validation $? "Uzip $app_name code"
+     $runtime
+    fi 
 }
 
 service(){
-    cp $script_dir/$app_name.service /etc/systemd/system/
-    validation $? "Copying the $app_name server is ..."
+    if [ ["$app_name" == "frontend"]]; then 
+       
+       cp $script_dir/$runtime.conf /etc/systemd/system/
+       systemctl daemon-reload
+       validation $? "Reloading the daemon ..."
+       
+       systemctl enable $runtime
+       validation $? "Enable $runtime server..."
+       
+       systemctl start $runtime
+       validation $? "Start the $runtime server"
+    else 
+
+      cp $script_dir/$app_name.service /etc/systemd/system/
+      validation $? "Copying the $app_name server is ..."
+      
+      systemctl daemon-reload
+      validation $? "Reloading the daemon ..."
+      
+      systemctl enable $app_name
+      validation $? "Enable $app_name server..."
+      
+      systemctl start $app_name
+      validation $? "Start the $app_name server"
     
-    systemctl daemon-reload
-    validation $? "Reloading the daemon ..."
-    
-    systemctl enable $app_name
-    validation $? "Enable $app_name server..."
-    
-    systemctl start $app_name
-    validation $? "Start the $app_name server"
+    fi
 }
