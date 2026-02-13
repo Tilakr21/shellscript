@@ -3,10 +3,10 @@ app_name=catalogue
 runtime=nodejs
 
 check_user
-node_setup $runtime
+node_setup
 user_creation
-applicaton $app_name
-service $app_name
+applicaton 
+service 
 
 cp mongo.repo /etc/yum.repos.d/
 validation $? "Copying the mongo repo was ..."
