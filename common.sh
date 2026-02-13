@@ -41,7 +41,7 @@ user_creation(){
     id roboshop &>>$LOG_FILE
     if [ $? -ne 0 ]; then
         useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
-        VALIDATE $? "Creating system user"
+        validation $? "Creating system user"
     else
         echo -e "Roboshop user already exist ... $Y SKIPPING $N"
     fi
@@ -50,19 +50,19 @@ user_creation(){
 application(){
     # downloading the app
     mkdir -p /app 
-    VALIDATE $? "Creating app directory"
+    validation $? "Creating app directory"
 
     curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip  &>>$LOG_FILE
-    VALIDATE $? "Downloading $app_name code"
+    validation $? "Downloading $app_name code"
 
     cd /app
-    VALIDATE $? "Moving to app directory"
+    validation $? "Moving to app directory"
 
     rm -rf /app/*
-    VALIDATE $? "Removing existing code"
+    validation $? "Removing existing code"
 
     unzip /tmp/$app_name.zip &>>$LOG_FILE
-    VALIDATE $? "Uzip $app_name code"
+    validation $? "Uzip $app_name code"
 }
 
 service(){
