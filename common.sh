@@ -59,11 +59,11 @@ application(){
        rm -rf /usr/share/nginx/html/* 
        validation $? "Removing existing code"
 
-       curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip
+       curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>> $LOG_FILE
        validation $? "Downloaded $app_name code"
 
        cd /usr/share/nginx/html 
-       unzip /tmp/$app_name.zip 
+       unzip /tmp/$app_name.zip  &>> $LOG_FILE
        validation $? "Uzip $app_name code"
 
     else
@@ -87,7 +87,8 @@ application(){
 }
 
 service(){
-    if [ [ "$app_name" == "frontend" ]]; then 
+    
+    if [[ "$app_name" == "frontend" ]]; then 
        
        cp $script_dir/$runtime.conf /etc/systemd/system/
        validation $? "Copying the $app_name server is ..."
