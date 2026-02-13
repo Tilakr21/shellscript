@@ -5,7 +5,7 @@ for instance in $@; do
                     --image-id ami-0220d79f3f480ecf5 \
                     --instance-type t3.small \
                     --security-group-ids sg-0039b9fd218e26beb \
-                    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]'
+                    --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]'\
                     --query "Instances[0].PublicIpAddress" \
                     --output text
                 )
@@ -35,7 +35,7 @@ for instance in $@; do
                   --image-id ami-0220d79f3f480ecf5 \
                   --instance-type t3.small \
                   --security-group-ids sg-0039b9fd218e26beb \
-                  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]'
+                  --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]'\
                   --query "Instances[0].PrivateIpAddress" \
                   --output text
                 )
