@@ -9,6 +9,7 @@ check_user(){
        echo -e "Executing the script through root user...."
     else
       echo -e "Need the root access for executing the script..."
+      exit 1
     fi
 }
 
@@ -18,5 +19,6 @@ validation(){
       echo -e "$(date "+%Y-%m-%d %H:%M:%S") $2 .... $G sucess"
     else 
       echo -e "$(date "+%Y-%m-%d %H:%M:%S") $2 .... $R Failure"
+      exit 1
     fi
 }
