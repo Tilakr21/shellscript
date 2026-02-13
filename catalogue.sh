@@ -1,8 +1,9 @@
 source ./common.sh
 app_name=catalogue
+runtime=node
 
 check_user
-node_setup $app_name
+node_setup $runtime
 user_creation
 applicaton $app_name
 service $app_name
