@@ -54,7 +54,7 @@ node(){
 
 application(){
     
-    if [["$app_name" == "frontend"]]; then
+    if [[ "$app_name" == "frontend" ]]; then
        #downloading the frontend
        rm -rf /usr/share/nginx/html/* 
        validation $? "Removing existing code"
@@ -87,9 +87,11 @@ application(){
 }
 
 service(){
-    if [ ["$app_name" == "frontend"]]; then 
+    if [ [ "$app_name" == "frontend" ]]; then 
        
        cp $script_dir/$runtime.conf /etc/systemd/system/
+       validation $? "Copying the $app_name server is ..."
+
        systemctl daemon-reload
        validation $? "Reloading the daemon ..."
        
