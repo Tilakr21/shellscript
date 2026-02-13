@@ -19,9 +19,9 @@ check_user(){
 
 validation(){
     if [ $1 -eq 0 ]; then
-      echo -e "$(date "+%Y-%m-%d %H:%M:%S") $2 .... $G sucess" | tee -a $LOG_FILE
+      echo -e "$(date "+%Y-%m-%d %H:%M:%S") $2 .... $G sucess $N" | tee -a $LOG_FILE
     else 
-      echo -e "$(date "+%Y-%m-%d %H:%M:%S") $2 .... $R Failure" | tee -a $LOG_FILE
+      echo -e "$(date "+%Y-%m-%d %H:%M:%S") $2 .... $R Failure $N" | tee -a $LOG_FILE
       exit 1
     fi
 }
