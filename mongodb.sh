@@ -1,10 +1,6 @@
-
-
 source ./common.sh
 
 check_user
-
-validation
 
 cp mongo.repo /etc/yum.repos.d/
 validation $? "Copying of mongo.repo"

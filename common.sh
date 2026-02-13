@@ -1,8 +1,12 @@
 user=$(id -u)
+LOG_DIR="/var/log/mongo"
+LOG_FILE="$LOG_DIR/$0.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
+
+mkdir -p $LOG_DIR
 
 check_user(){
     if [ $user -eq 0 ]; then
