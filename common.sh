@@ -11,7 +11,7 @@ check_user(){
        mkdir -p $LOG_DIR
        echo -e "Executing the script through root user...." | tee -a $LOG_FILE
     else
-      echo -e "Need the root access for executing the script..." |
+      echo -e "Need the root access for executing the script..."
       exit 1
     fi
 }
