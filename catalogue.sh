@@ -1,6 +1,6 @@
 source ./common.sh
 app_name=catalogue
-runtime=node
+runtime=nodejs
 
 check_user
 node_setup $runtime
