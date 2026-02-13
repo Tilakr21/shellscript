@@ -91,12 +91,12 @@ service(){
     if [[ "$app_name" == "frontend" ]]; then 
        
        cp $script_dir/$runtime.conf /etc/systemd/system/
-       validation $? "Copying the $app_name server is ..."
+       validation $? "Copying the $runtime server is ..."
 
        systemctl daemon-reload
        validation $? "Reloading the daemon ..."
        
-       systemctl enable $runtime
+       systemctl enable $runtime &>>$LOG_FILE
        validation $? "Enable $runtime server..."
        
        systemctl start $runtime
@@ -109,7 +109,7 @@ service(){
       systemctl daemon-reload
       validation $? "Reloading the daemon ..."
       
-      systemctl enable $app_name
+      systemctl enable $app_name &>>$LOG_FILE
       validation $? "Enable $app_name server..."
       
       systemctl start $app_name
