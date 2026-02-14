@@ -8,4 +8,4 @@ app_setup
 service 
 
 mysql_secure_installation --set-root-pass RoboShop@1
-VALIDATE $? "Setup root password"
+validation $? "Setup root password"
