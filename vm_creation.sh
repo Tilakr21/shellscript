@@ -1,7 +1,7 @@
 #!/bin/bash
 for instance in $@; do
     HOSTED_ZONE_ID=Z048988723HS7J4W6I2HO
-        if [ $instance == nginx ]; then
+        if [ $instance == frontend ]; then
             instance_id=$(aws ec2 run-instances \
                     --image-id ami-0220d79f3f480ecf5 \
                     --instance-type t3.small \
