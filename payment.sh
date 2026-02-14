@@ -2,6 +2,7 @@
 source ./common.sh
 app_name=payment
 runtime=python
+script_dir=$PWD
 
 check_user
 
