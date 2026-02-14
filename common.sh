@@ -29,7 +29,7 @@ validation(){
 app_setup(){
     if [[ "$app_name" == "mysqld" || "$app_name" == "shipping" || "$app_name" == "rabbitmq" || "$app_name" == "mongod" ]]; then
          dnf install $runtime -y &>> $LOG_FILE
-         echo "installing"
+         echo "installing $runtime"
          validation $? "Installing $runtime ..."
     else
          dnf module disable $runtime -y &>> $LOG_FILE
