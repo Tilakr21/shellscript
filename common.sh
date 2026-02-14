@@ -113,7 +113,8 @@ service(){
     
     if [[ "$app_name" == "frontend" ]]; then 
        
-         cp $script_dir/$runtime.conf /etc/systemd/system/
+         cp $script_dir/$runtime.conf /etc/nginx/
+         echo "$script_dir/$runtime.conf"
          validation $? "Copying the $runtime server is ..."
   
          systemctl daemon-reload
