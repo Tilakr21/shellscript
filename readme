@@ -1,0 +1,14 @@
+ROBOSHOP PROJECT THROUGH SHELL SCRIPT
+
+DON'T CHANGE THE BELOW NAMES WHILE CREATING VM'S.
+
+mongodb
+catalogue
+redis 
+user
+cart
+mysql
+shipping
+rabbitmq
+payment
+dispatch

@@ -27,7 +27,7 @@ validation(){
 }
 
 app_setup(){
-    if [[ "$app_name" == "mysqld" || "$app_name" == "shipping" || "$app_name" == "rabbitmq" || "$app_name" == "mongod" ]]; then
+    if [[ "$app_name" == "mysqld" || "$app_name" == "shipping" || "$app_name" == "rabbitmq" || "$app_name" == "mongod" || "$app_name" == "dispatch" ]]; then
          dnf install $runtime -y &>> $LOG_FILE
          echo "installing $runtime"
          validation $? "Installing $runtime ..."
@@ -71,6 +71,14 @@ maven(){
 python(){
     cd /app 
     pip3 install -r requirements.txt &>>$LOG_FILE
+    validation $? "Dependency installed..."
+}
+
+golang(){
+    cd /app 
+    go mod init dispatch
+    go get 
+    go build
     validation $? "Dependency installed..."
 }
 
