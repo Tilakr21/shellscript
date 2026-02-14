@@ -123,7 +123,7 @@ service(){
          systemctl start $runtime
          validation $? "Start the $runtime server"
 
-    elif [[ "$app_name" == "mongod" || "$app_name" == "redis" || "$app_name"=="mysqld" ]]; then
+    elif [[ "$app_name" == "mongod" || "$app_name" == "redis" || "$app_name" == "mysqld" ]]; then
 
           systemctl enable $app_name  &>>$LOG_FILE
           validation $? "Enable the $app_name service ...."
