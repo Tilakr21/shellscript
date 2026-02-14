@@ -45,7 +45,7 @@ for instance in $@; do
                   --query "Instances[0].PrivateIpAddress" \
                   --output text
                 )
-            echo "Instance Public IP: $ip"
+            echo "Instance Private IP: $ip"
             aws route53 change-resource-record-sets \
                 --hosted-zone-id $HOSTED_ZONE_ID \
                 --change-batch '{
