@@ -27,7 +27,7 @@ validation(){
 }
 
 app_setup(){
-    if [[ "$app_name"=="mysqld" || "$app_name"=="shipping" || "$app_name"=="rabbitmq" || "$app_name"=="mongod" ]]; then
+    if [[ "$app_name" == "mysqld" || "$app_name" == "shipping" || "$app_name" == "rabbitmq" || "$app_name" == "mongod" ]]; then
        dnf install $runtime -y &>> $LOG_FILE
        validation $? "Installing $runtime ..."
     else
@@ -49,24 +49,24 @@ user_creation(){
         useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
         validation $? "Creating system user"
     else
-        echo -e "Roboshop user already exist ... $Y SKIPPING $N"
+        echo -e "Roboshop user already exist ... $Y SKIPPING $N" &>>$LOG_FILE
     fi
 }
 
 nodejs(){
     cd /app 
-    npm install 
+    npm install  &>>$LOG_FILE
 }
 
 maven(){
     cd /app 
-    mvn clean package 
+    mvn clean package &>>$LOG_FILE
     mv target/shipping-1.0.jar shipping.jar 
 }
 
 python(){
     cd /app 
-    pip3 install -r requirements.txt
+    pip3 install -r requirements.txt &>>$LOG_FILE
 }
 
 application(){
