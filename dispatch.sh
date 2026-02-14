@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source ./common.sh
 app_name=dispatch
 runtime=golang
 
