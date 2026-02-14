@@ -5,7 +5,7 @@ script_dir=$PWD
 
 check_user
 
-cp $script_dir/$runtime.conf /etc/systemd/system/
+cp $script_dir/$app_name.repo /etc/systemd/system/
 validation $? "Copying repo ...."
 
 rabbitmq-server
