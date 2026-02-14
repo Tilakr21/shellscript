@@ -53,7 +53,7 @@ user_creation(){
     fi
 }
 
-node(){
+nodejs(){
     cd /app 
     npm install 
 }
