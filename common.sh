@@ -50,6 +50,7 @@ user_creation(){
          validation $? "Creating system user"
     else
          echo -e "Roboshop user already exist ... $Y SKIPPING $N" &>>$LOG_FILE
+         validation $? "User already exist ... $Y SKIPPING $N"
     fi
 }
 
