@@ -6,6 +6,7 @@ script_dir=$PWD
 MYSQL_HOST=mysql.tilakrepalle.in
 
 check_user
+app_setup
 user_creation
 application
 
@@ -21,6 +22,7 @@ if [ $? -ne 0 ]; then
     VALIDATE $? "Loaded data into MySQL"
 else
     echo -e "data is already loaded ... $Y SKIPPING $N"
+    validation $? "data is already loaded ... $Y SKIPPING $N"
 fi
 
 service
