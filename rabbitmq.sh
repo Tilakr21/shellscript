@@ -11,8 +11,8 @@ validation $? "Copying repo ...."
 
 app_setup
 
-systemctl enable ${runtime} &>>$LOG_FILE
-validation $? "Enable the ${app_name} service ...."
+systemctl enable $runtime &>>$LOG_FILE
+validation $? "Enable the $app_name service ...."
 
 systemctl daemon-reload
 validation $? "Reloading the daemon..."
