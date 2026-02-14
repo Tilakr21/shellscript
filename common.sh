@@ -56,17 +56,20 @@ user_creation(){
 nodejs(){
     cd /app 
     npm install  &>>$LOG_FILE
+    validation $? "nm install ...."
 }
 
 maven(){
     cd /app 
     mvn clean package &>>$LOG_FILE
+    validation $? "maven install ..."
     mv target/shipping-1.0.jar shipping.jar 
 }
 
 python(){
     cd /app 
     pip3 install -r requirements.txt &>>$LOG_FILE
+    validation $? "Dependency installed..."
 }
 
 application(){
@@ -125,6 +128,9 @@ service(){
           systemctl enable $app_name  &>>$LOG_FILE
           validation $? "Enable the $app_name service ...."
 
+          systemctl daemon-reload
+          validation $? "Reloading the daemon ..."
+
           systemctl start $app_name 
           validation $? "Starting the $app_name Service ..."
 
@@ -135,11 +141,11 @@ service(){
       cp $script_dir/$app_name.service /etc/systemd/system/
       validation $? "Copying the $app_name server is ..."
       
-      systemctl daemon-reload
-      validation $? "Reloading the daemon ..."
-      
       systemctl enable $app_name &>>$LOG_FILE
       validation $? "Enable $app_name server..."
+
+      systemctl daemon-reload
+      validation $? "Reloading the daemon ..."
       
       systemctl start $app_name
       validation $? "Start the $app_name server"
