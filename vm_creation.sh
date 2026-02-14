@@ -1,3 +1,4 @@
+#!/bin/bash
 for instance in $@; do
     HOSTED_ZONE_ID=Z048988723HS7J4W6I2HO
         if [ $instance == nginx ]; then

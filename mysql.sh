@@ -1,0 +1,10 @@
+#!/bin/bash
+source ./common.sh
+app_name=mysqld
+runtime=mysql-server
+
+check_user
+service 
+
+mysql_secure_installation --set-root-pass RoboShop@1
+VALIDATE $? "Setup root password"
