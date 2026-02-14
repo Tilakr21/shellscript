@@ -1,6 +1,6 @@
 #!/bin/bash
 user=$(id -u)
-LOG_DIR="/var/log/mongo"
+LOG_DIR="/var/log/"
 LOG_FILE="$LOG_DIR/$0.log"
 R="\e[31m"
 G="\e[32m"
