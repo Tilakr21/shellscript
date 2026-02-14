@@ -76,9 +76,9 @@ python(){
 
 golang(){
     cd /app 
-    go mod init dispatch
-    go get 
-    go build
+    go mod init dispatch &>>$LOG_FILE
+    go get &>>$LOG_FILE
+    go build &>>$LOG_FILE
     validation $? "Dependency installed..."
 }
 
